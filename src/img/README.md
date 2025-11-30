@@ -7,3 +7,4 @@ L'image doit être :
 - Format recommandé : PNG avec transparence ou fond circulaire
 - Dimensions recommandées : 400x400px minimum
 - L'image sera affichée en cercle de 10rem (160px) de diamètre
+
