@@ -52,8 +52,16 @@ L'application sera accessible sur [http://localhost:5173](http://localhost:5173)
 
 ## 📚 Documentation
 
+### Démarrage
 - **[QUICKSTART.md](./QUICKSTART.md)** ⭐ - Guide de démarrage rapide (commencez ici !)
 - **[FIX_CONSOLE_ERRORS.md](./FIX_CONSOLE_ERRORS.md)** - Explication du lazy loading
 - **[SOLUTION_ERREUR.md](./SOLUTION_ERREUR.md)** - Résolution de l'erreur "Invalid supabaseUrl"
 - **[SETUP_AUTH.md](./SETUP_AUTH.md)** - Guide détaillé de l'authentification
 - **[IMPLEMENTATION_SUMMARY.md](./IMPLEMENTATION_SUMMARY.md)** - Résumé technique
+
+### Design System & Thème Terracotta
+- **[DESIGN_TOKENS.md](./DESIGN_TOKENS.md)** 🎨 - **Guide de référence complet** : toutes les variables CSS disponibles (couleurs, spacing, typographie, effets, alias Figma)
+- **Thème personnalisé** : Palette Terracotta (#CB6441) intégrée dans tout le design system
+
+### Features & Changelog
+- **[CHANGELOG_PASSWORD_TOGGLE.md](./CHANGELOG_PASSWORD_TOGGLE.md)** - Documentation de la fonctionnalité d'affichage/masquage du mot de passe

@@ -101,8 +101,8 @@ Une fois configuré, vous devriez :
 
 ---
 
-## 📚 Documentation complète
+## 📚 Autres ressources
 
-Pour plus de détails, consultez :
-- `SETUP_AUTH.md` - Guide complet de configuration
-- `IMPLEMENTATION_SUMMARY.md` - Détails techniques de l'implémentation
+- **[README.md](./README.md)** - Vue d'ensemble du projet
+- **[CHANGELOG_PASSWORD_TOGGLE.md](./CHANGELOG_PASSWORD_TOGGLE.md)** - Fonctionnalité d'affichage/masquage du mot de passe
+- **[FIGMA_VARIABLES.md](./FIGMA_VARIABLES.md)** - Variables du Design System

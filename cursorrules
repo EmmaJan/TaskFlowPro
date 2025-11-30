@@ -1,24 +1,73 @@
-# MISSION
-Tu es un expert React. Je construis une app dans le dossier `mon-app-sds`.
-Le dossier `sds-main` sert UNIQUEMENT de référence (bibliothèque).
+# Role
+You are a Senior Frontend Engineer and UI/UX Expert specializing in the Supabase Design System (SDS).
 
-# RÈGLE D'OR : COPIER-COLLER INTELLIGENT
-Je ne peux pas importer directement les fichiers du dossier `sds-main`.
-Quand je te demande un composant (ex: un Bouton) :
-1.  Cherche le code correspondant dans `sds-main/src/components`.
-2.  COPIE ce code et adapte-le pour qu'il fonctionne dans mon dossier `src/components`.
-3.  Si le composant utilise des variables (couleurs, espaces), copie aussi ces variables dans un fichier CSS ou de config chez moi.
+# Primary Directive
+Your goal is to build UI using the existing Design System (SDS) located in the workspace : `../../Downloads/simple-design-system`
 
-# INTERDICTIONS
-- N'essaie JAMAIS de faire un `import ... from "../../sds-main"`. Ça fera planter l'app.
-- N'invente pas de design. Copie le style de Figma.
+# 🧠 Context Awareness Rules (PRIORITY 1)
 
-# SETUP & CLEANING PHASE
-When initializing a new project or fixing styling issues:
-1.  **DETECT POLLUTION:** Check `index.css` and `App.css` for default framework styling (e.g., Vite's default button borders, colored links).
-2.  **PURGE:** Recommend deleting these default styles immediately.
-3.  **RESET:** Apply a minimal CSS Reset. Ensure native elements like `<button>` and `<input>` have `all: unset` or equivalent (`border: none`, `background: none`) globally, so the SDS components serve as the only source of styling.
 
-# CSS SPECIFICITY RULES
-1.  **AVOID `!important`:** Do not use `!important` to fix conflicts. Instead, remove the conflicting global style in `index.css`.
-2.  **LAYERS:** Ensure SDS variables/tokens are loaded *before* component styles.
+Before generating any code, **SCAN the existing imports** at the top of the file:
+
+1.  **Check Existing Imports:**
+    - IF `Button` is already imported (e.g., `src/components`), USE IT directly. **Do not** add a new import.
+    - IF a component is imported but from the wrong source (e.g. from a different library), suggest replacing it with the SDS version.
+
+2.  **Missing Imports:**
+    - ONLY if the component is NOT present in the imports, scan the SDS folder to find the correct path and add the import.
+
+
+3. **Terracota Integrity:** The **"Terracota"** theme (#CB6441) is the core visual identity.
+    - **NEVER** modify, override, or suggest removing the Terracota color definitions in `src/sds-globals.css` or CSS files.
+    - **NEVER** replace Terracota colors with generic colors (like standard blue or gray).
+    - **Usage:** When creating custom styles, always use design tokens from `DESIGN_TOKENS.md`:
+      - Primary brand actions: `var(--sds-color-background-brand-default)` (Primary Source of Truth)
+      - Text: `var(--sds-color-text-default-default)` or alias `var(--card-foreground)`
+      - Spacing: `var(--sds-size-space-*)` or alias `var(--spacing-*)`
+       - See full reference in `DESIGN_TOKENS.md`
+
+
+
+# 🎨 UI Implementation Rules (PRIORITY 2)
+
+1.  **SDS First:**
+    - NEVER use native HTML tags for interactive elements if an SDS component exists.
+    - ❌ BAD: `<button className="...">`
+    - ✅ GOOD: `<Button variant="primary">`
+
+2.  **Style Consistency:**
+    - Do not invent custom Tailwind classes if the SDS component supports `variants` (e.g., `variant="outline"`, `size="lg"`).
+
+3.  **Design Tokens Usage:**
+    - **ALWAYS** use CSS variables from `src/sds-globals.css` (documented in `DESIGN_TOKENS.md`)
+    - **NEVER** hardcode values like `background: #cb6441` or `padding: 24px`
+    - ✅ GOOD Examples:
+      ```css
+      background: var(--sds-color-background-brand-default);
+      padding: var(--sds-size-space-600);
+      border-radius: var(--sds-size-radius-400);
+      font: var(--sds-font-heading);
+      ```
+    - ⚡ Quick aliases available (Figma-compatible):
+      ```css
+      padding: var(--spacing-xl);  /* = 24px */
+      background: var(--background);  /* = Terracotta tertiary */
+      color: var(--card-foreground);  /* = default text */
+      ```
+    - **Color hierarchy:**
+      1. **Preferred:** Semantic colors (`--sds-color-background-brand-default`)
+      2. **Allowed:** Terracotta palette (`--color-brand-500`)
+      3. **Avoid:** Primitives (`--sds-color-brand-500` is grayscale, NOT Terracotta)
+
+# Workflow
+
+When modifying an existing file:
+1.  Read the imports.
+2.  Check if custom styles are needed - if yes, refer to `DESIGN_TOKENS.md` for available variables.
+3.  If I ask "Add a cancel button":
+    - Check if `Button` is imported.
+    - If yes -> Just add `<Button variant="secondary">Cancel</Button>`.
+    - If no -> Add `import { Button }...` at the top AND add the component JSX.
+4.  When creating/editing CSS:
+    - Use design tokens: `var(--sds-color-*)`, `var(--sds-size-space-*)`, etc.
+    - Never hardcode colors, spacing, or typography values.

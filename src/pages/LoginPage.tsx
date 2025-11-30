@@ -8,6 +8,22 @@ import { supabase } from '../lib/supabase';
 import './LoginPage.css';
 import avatarImage from '../img/avatar.png';
 
+// Configuration des textes de l'interface
+const TEXTS = {
+  APP_NAME: 'TaskFlow Pro',
+  APP_SUBTITLE: 'Accès réservé à l\'équipe Alivia',
+  EMAIL_LABEL: 'Email',
+  EMAIL_PLACEHOLDER: 'jean.dupont@alivia.fr',
+  PASSWORD_LABEL: 'Mot de passe',
+  PASSWORD_PLACEHOLDER: 'Saisissez votre mot de passe',
+  SHOW_PASSWORD_ARIA: 'Afficher le mot de passe',
+  HIDE_PASSWORD_ARIA: 'Masquer le mot de passe',
+  GUEST_MODE_LABEL: 'Mode invité',
+  LOGIN_BUTTON_LOADING: 'Connexion...',
+  LOGIN_BUTTON: 'Se connecter',
+  ERROR_GENERIC: 'Une erreur est survenue lors de la connexion',
+} as const;
+
 export function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,7 +53,7 @@ export function LoginPage() {
         navigate('/dashboard');
       }
     } catch (err) {
-      setError('Une erreur est survenue lors de la connexion');
+      setError(TEXTS.ERROR_GENERIC);
       console.error('Erreur de connexion:', err);
     } finally {
       setLoading(false);
@@ -45,7 +61,7 @@ export function LoginPage() {
   };
 
   const handleGuestMode = () => {
-    console.log('Mode invité activé');
+    // TODO: Implémenter le mode invité
   };
 
   const togglePasswordVisibility = () => {
@@ -59,8 +75,8 @@ export function LoginPage() {
           <img src={avatarImage} alt="Avatar Alivia" />
         </div>
 
-        <h3 className="login-title">TaskFlow Pro</h3>
-        <p className="login-subtitle">Accès réservé à l'équipe Alivia</p>
+        <h3 className="login-title">{TEXTS.APP_NAME}</h3>
+        <p className="login-subtitle">{TEXTS.APP_SUBTITLE}</p>
 
         {error && (
           <div className="login-error" role="alert">
@@ -70,18 +86,18 @@ export function LoginPage() {
 
         <Form onSubmit={handleSubmit} className="login-form">
           <InputField
-            label="Email"
+            label={TEXTS.EMAIL_LABEL}
             type="email"
-            placeholder="jean.dupont@alivia.fr"
+            placeholder={TEXTS.EMAIL_PLACEHOLDER}
             value={email}
             onChange={(value) => setEmail(value)}
             isRequired
           />
 
           <InputField
-            label="Mot de passe"
+            label={TEXTS.PASSWORD_LABEL}
             type={showPassword ? "text" : "password"}
-            placeholder="Saisissez votre mot de passe"
+            placeholder={TEXTS.PASSWORD_PLACEHOLDER}
             value={password}
             onChange={(value) => setPassword(value)}
             isRequired
@@ -89,7 +105,7 @@ export function LoginPage() {
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                aria-label={showPassword ? TEXTS.HIDE_PASSWORD_ARIA : TEXTS.SHOW_PASSWORD_ARIA}
               >
                 {showPassword ? <IconEyeOff size="20" /> : <IconEye size="20" />}
               </button>
@@ -125,11 +141,11 @@ export function LoginPage() {
                   strokeLinejoin="round"
                 />
               </svg>
-              Mode invité
+              {TEXTS.GUEST_MODE_LABEL}
             </button>
 
             <Button variant="primary" type="submit" isDisabled={loading}>
-              {loading ? 'Connexion...' : 'Se connecter'}
+              {loading ? TEXTS.LOGIN_BUTTON_LOADING : TEXTS.LOGIN_BUTTON}
               {!loading && (
                 <svg
                   width="20"

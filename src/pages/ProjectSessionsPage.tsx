@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import type { Tables } from '../types/supabase';
@@ -23,16 +23,14 @@ export function ProjectSessionsPage() {
   const [error, setError] = useState<string | null>(null);
   const [projectName, setProjectName] = useState<string>('');
 
-  useEffect(() => {
-    if (projectId) {
-      loadProjectAndSessions();
-    }
-  }, [projectId]);
-
-  async function loadProjectAndSessions() {
+  const loadProjectAndSessions = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
+
+      if (!projectId) {
+        throw new Error('ID du projet manquant');
+      }
 
       // Charger le projet pour obtenir son nom
       const { data: projectData, error: projectError } = await supabase
@@ -65,7 +63,13 @@ export function ProjectSessionsPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [projectId]);
+
+  useEffect(() => {
+    if (projectId) {
+      loadProjectAndSessions();
+    }
+  }, [projectId, loadProjectAndSessions]);
 
   function formatDate(dateString: string) {
     const date = new Date(dateString);
