@@ -1,0 +1,70 @@
+/* src/index.css */
+
+/* 1. Reset de base (Indispensable) */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* 2. Le "Button Killer" : On supprime tous les styles par défaut des boutons */
+button {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit; /* Pour hériter de la police SDS */
+}
+
+/* On supprime le focus par défaut moche du navigateur */
+button:focus, button:focus-visible {
+  outline: none;
+}
+
+/* RESET DES INPUTS */
+/* On applique le nettoyage à TOUT le monde, sans exception */
+input,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  /* On tue toutes les bordures par défaut */
+  border: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  
+  /* On s'assure qu'ils prennent la place */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+
+/* On garde ton bloc Autofill qui était très bien */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px var(--sds-color-background-default-default) inset !important;
+    -webkit-text-fill-color: var(--sds-color-text-default-default) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}

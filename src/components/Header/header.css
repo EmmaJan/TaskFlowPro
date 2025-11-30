@@ -1,0 +1,46 @@
+.header {
+  background: var(--sds-color-background-default-default);
+  border-bottom: var(--sds-size-stroke-border) solid var(--sds-color-border-default-default);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sds-size-space-600);
+  padding: var(--sds-size-space-800);
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sds-size-space-600);
+}
+
+.header-logo .logo {
+  color: var(--sds-color-icon-default-default);
+  width: 40px;
+  height: 35px;
+}
+
+.header-nav {
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.header-auth {
+  display: flex;
+  gap: var(--sds-size-space-300);
+  width: 178px;
+}
+
+.header-auth .button {
+  flex: 1;
+}

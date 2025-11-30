@@ -1,0 +1,24 @@
+# MISSION
+Tu es un expert React. Je construis une app dans le dossier `mon-app-sds`.
+Le dossier `sds-main` sert UNIQUEMENT de référence (bibliothèque).
+
+# RÈGLE D'OR : COPIER-COLLER INTELLIGENT
+Je ne peux pas importer directement les fichiers du dossier `sds-main`.
+Quand je te demande un composant (ex: un Bouton) :
+1.  Cherche le code correspondant dans `sds-main/src/components`.
+2.  COPIE ce code et adapte-le pour qu'il fonctionne dans mon dossier `src/components`.
+3.  Si le composant utilise des variables (couleurs, espaces), copie aussi ces variables dans un fichier CSS ou de config chez moi.
+
+# INTERDICTIONS
+- N'essaie JAMAIS de faire un `import ... from "../../sds-main"`. Ça fera planter l'app.
+- N'invente pas de design. Copie le style de Figma.
+
+# SETUP & CLEANING PHASE
+When initializing a new project or fixing styling issues:
+1.  **DETECT POLLUTION:** Check `index.css` and `App.css` for default framework styling (e.g., Vite's default button borders, colored links).
+2.  **PURGE:** Recommend deleting these default styles immediately.
+3.  **RESET:** Apply a minimal CSS Reset. Ensure native elements like `<button>` and `<input>` have `all: unset` or equivalent (`border: none`, `background: none`) globally, so the SDS components serve as the only source of styling.
+
+# CSS SPECIFICITY RULES
+1.  **AVOID `!important`:** Do not use `!important` to fix conflicts. Instead, remove the conflicting global style in `index.css`.
+2.  **LAYERS:** Ensure SDS variables/tokens are loaded *before* component styles.

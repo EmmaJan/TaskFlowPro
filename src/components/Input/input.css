@@ -1,0 +1,112 @@
+/* Wrapper pour l'input avec élément à droite */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-right-element {
+  position: absolute;
+  right: var(--sds-size-space-300);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: all;
+  z-index: 1;
+}
+
+.input-right-element button {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sds-color-text-default-secondary);
+  transition: color 0.2s ease;
+  border-radius: var(--sds-size-radius-100);
+}
+
+.input-right-element button:hover {
+  color: var(--sds-color-text-default-default);
+  background-color: var(--sds-color-background-default-hover);
+}
+
+.input-right-element button:active {
+  background-color: var(--sds-color-background-default-active);
+}
+
+.input-wrapper .input {
+  padding-right: calc(var(--sds-size-space-400) + 32px);
+}
+
+.input {
+  /* Variables locales du composant */
+  --input-background-color: var(--sds-color-background-default-default);
+  --input-text-color: var(--sds-color-text-default-default);
+  --input-border-color: var(--sds-color-border-default-default);
+  --input-placeholder-color: var(--sds-color-text-default-tertiary);
+  --input-focus-ring-color: var(--sds-color-border-brand-default);
+
+  /* Styles de base */
+  background-color: var(--input-background-color);
+  /* Bordure interne subtile avec box-shadow inset */
+  box-shadow: inset 0 0 0 var(--sds-size-stroke-border) var(--input-border-color);
+  border-radius: var(--sds-size-radius-200);
+  color: var(--input-text-color);
+  display: block;
+  font: var(--sds-font-body-base);
+  line-height: 1.5;
+  padding: var(--sds-size-space-300) var(--sds-size-space-400);
+  width: 100%;
+  cursor: text;
+  transition: box-shadow 0.15s ease-in-out;
+  border: none;
+
+  &::placeholder {
+    color: var(--input-placeholder-color);
+  }
+
+  /* État hover - bordure plus foncée */
+  &:hover:not([data-disabled]):not([data-focused]) {
+    --input-border-color: var(--sds-color-border-default-secondary);
+  }
+
+  /* État focus - anneau de focus externe SDS */
+  &:focus,
+  &[data-focused],
+  &[data-focus-visible] {
+    --input-border-color: var(--sds-color-border-brand-secondary);
+    /* Box-shadow combiné : bordure interne + anneau de focus externe */
+    box-shadow: 
+      inset 0 0 0 var(--sds-size-stroke-border) var(--input-border-color),
+      0 0 0 var(--sds-size-stroke-focus-ring) var(--input-focus-ring-color);
+    outline: none;
+  }
+
+  /* État disabled - opacité réduite et curseur interdit */
+  &[data-disabled],
+  &:disabled {
+    --input-background-color: var(--sds-color-background-disabled-default);
+    --input-text-color: var(--sds-color-text-disabled-default);
+    --input-border-color: var(--sds-color-border-disabled-default);
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* État invalide - bordure rouge */
+  &[data-invalid]:not([data-disabled]) {
+    --input-border-color: var(--sds-color-border-danger-default);
+  }
+
+  /* État invalide + focus */
+  &[data-invalid]:not([data-disabled]):focus,
+  &[data-invalid]:not([data-disabled])[data-focused],
+  &[data-invalid]:not([data-disabled])[data-focus-visible] {
+    box-shadow: 
+      inset 0 0 0 var(--sds-size-stroke-border) var(--input-border-color),
+      0 0 0 var(--sds-size-stroke-focus-ring) var(--sds-color-border-danger-default);
+  }
+}

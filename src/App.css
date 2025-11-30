@@ -1,0 +1,54 @@
+/* src/App.css */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--sds-color-background-brand-tertiary);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--sds-size-space-400);
+}
+
+.login-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-size-space-300);
+  width: 100%;
+  max-width: 420px;
+  padding: var(--sds-size-space-600);
+  border: var(--sds-size-stroke-border) solid var(--sds-color-border-default-default);
+  border-radius: var(--sds-size-radius-400);
+  background-color: var(--sds-color-background-default-default);
+}
+
+.login-title {
+  font: var(--sds-font-body-strong);
+  color: var(--sds-color-text-default-default);
+  margin: 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-size-space-800);
+}
+
+.login-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-size-space-400);
+}
+
+.login-actions {
+  display: flex;
+  gap: var(--sds-size-space-400);
+}
+
+.login-actions .button {
+  flex: 1;
+}
